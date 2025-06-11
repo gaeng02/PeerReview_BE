@@ -10,12 +10,20 @@ class UserBase (BaseModel) :
 class UserCreate (UserBase) : 
     pass
 
-class UserInDB (UserBase) : 
+class UserInDB (BaseModel) : 
     id : int
+    username : str
+    wallet_address : str
 
-    class config : 
-        orm_mode = True
+    class Config : 
+        model_config = {
+            "from_attributes" : True
+        }
 
+class UserAuth (BaseModel) : 
+    username : str
+    wallet_address : str
+    
 
 # paper
 class PaperBase (BaseModel) : 

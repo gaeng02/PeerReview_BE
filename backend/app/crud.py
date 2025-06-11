@@ -11,12 +11,20 @@ def get_user (db : Session, user_id : int) :
 def get_user_by_wallet (db : Session, wallet_address : str) : 
     return db.query(models.User).filter(models.User.wallet_address == wallet_address).first()
 
-def create_user (db : Session, user : schemas.UserCreate) : 
+def create_user (db : Session, user : schemas.UserAuth) : 
     db_user = models.User(username = user.username, wallet_address = user.wallet_address)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
     return db_user
+
+def get_user_by_username_and_wallet (db : Session, username : str, wallet_address : str) : 
+    return (
+        db.query(models.User)
+        .filter(models.User.username == username)
+        .filter(models.User.wallet_address == wallet_address)
+        .first()
+    )
 
 # paper
 def create_paper (db : Session, paper : schemas.PaperCreate) : 
