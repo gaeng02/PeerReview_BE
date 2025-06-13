@@ -36,6 +36,7 @@ class BlockChain_Client :
             ipfs_hash
         ).build_transaction({
             "chainId" : self.chain_id,
+            "from": self.account,
             "gas" : 200_000,
             "gasPrice" : self.w3.to_wei("2", "gwei"),
             "nonce" : nonce,
@@ -55,6 +56,7 @@ class BlockChain_Client :
             ipfs_hash
         ).build_transaction({
             "chainId" : self.chain_id,
+            "from": self.account,
             "gas" : 200_000,
             "gasPrice" : self.w3.to_wei("2", "gwei"),
             "nonce" : nonce,
